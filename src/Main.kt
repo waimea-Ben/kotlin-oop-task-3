@@ -1,6 +1,6 @@
 /**
  * ================================================
- * Task 2 - Garden Gnomes on the Steps
+ * Task 3 - Garden Gnomes on the Steps
  *
  * The gnomes have found a few home on some steps
  *
@@ -148,7 +148,11 @@ class Steps() {
      * Return the number of gnomes on steps
      */
     fun gnomeCount(): Int {
-        return 0
+        var count = 0
+       for (step in steps.) {
+           count ++
+       }
+        return count
     }
 
     /**
