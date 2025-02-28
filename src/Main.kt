@@ -141,25 +141,37 @@ class Steps() {
      * etc.
      */
     fun show() {
-
+        for (i in 0..<STEPCOUNT) {
+            val stepNum = i + 1
+            val gnome = steps[i]
+            println("$stepNum. ${gnome?.name ?: ""}")
+        }
     }
 
     /**
      * Return the number of gnomes on steps
      */
     fun gnomeCount(): Int {
-        var count = 0
-       for (step in steps.) {
-           count ++
-       }
-        return count
+        return steps.count { it != null }
     }
 
     /**
      * Place a given gnome on the given step (1-5)
      */
     fun placeGnome(step: Int, gnome: Gnome) {
+        if (step < 1 || step > STEPCOUNT) return
 
+        val index = step - 1
+
+
+        for (i in 0..<STEPCOUNT) {
+            if (steps[i] == gnome) {
+                steps[i] = null
+                break
+            }
+        }
+
+        steps[index] = gnome
     }
 
     /**
@@ -167,6 +179,9 @@ class Steps() {
      * step number (1-5) if found, or 0 if not
      */
     fun stepNumOfGnome(gnome: Gnome): Int {
+        for (i in 0..<STEPCOUNT) {
+            if (steps[i] == gnome) return i+1
+        }
         return 0
     }
 
@@ -175,21 +190,28 @@ class Steps() {
      * or null if out of range or empty
      */
     fun gnomeOnStep(stepNum: Int): Gnome? {
-        return null
+        if (stepNum < 1 || stepNum > STEPCOUNT) return null
+        return steps[stepNum-1]
     }
 
     /**
      * Clear any gnomes off the given step (1-5)
      */
     fun clearStep(step: Int) {
-
+        if (step < 1 || step > STEPCOUNT) return
+        steps[step-1] = null
     }
 
     /**
      * Remove a given gnome from the steps
      */
     fun removeGnome(gnome: Gnome) {
-
+        for (i in 0..<STEPCOUNT) {
+            if (steps[i] == gnome) {
+                steps[i] = null
+                return
+            }
+        }
     }
 }
 
